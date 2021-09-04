@@ -1,0 +1,5 @@
+opencv-python
+Pillow
+pytest-shutil
+scikit-learn
+scikit-image
