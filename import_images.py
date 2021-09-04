@@ -3,8 +3,8 @@ from tkinter import filedialog
 
 from PIL import Image, ImageTk
 
-from os import walk
-from os.path import join, relpath
+from os import walk, makedirs
+from os.path import join, exists
 
 import shutil
 
@@ -31,6 +31,10 @@ class App:
         for shape in SHAPES:
             button = Button(button_frame, text=shape, command=lambda shape=shape : self.copy_image(shape))
             button.pack(side=LEFT, padx=10)
+            
+            shape_dir = join('training', shape)
+            if not exists(shape_dir):
+                makedirs(shape_dir)
 
         self.update_image()
 
