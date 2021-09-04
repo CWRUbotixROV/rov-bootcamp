@@ -1,0 +1,1 @@
+SHAPES = ('Square', 'Triangle', 'Star', 'Squiggle')
