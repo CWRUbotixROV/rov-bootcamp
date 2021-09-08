@@ -3,3 +3,4 @@ Pillow
 pytest-shutil
 scikit-learn
 scikit-image
+imutils
