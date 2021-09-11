@@ -1,11 +1,13 @@
 import cv2
-import color_mask
+import shape_classifier
+import utils
 
-image = cv2.imread("training/Square/IMG_1161.JPG")
+images, shape_label = utils.get_all_training_data()
 
-final_image = color_mask.get_mask(image)
+image = cv2.imread(images[3])
 
-cv2.imshow("image", final_image)
+otsu_image = shape_classifier.otsu(image)
+cv2.imshow("image", otsu_image)
 
 cv2.waitKey(0)
 
