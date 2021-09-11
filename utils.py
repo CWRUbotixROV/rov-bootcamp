@@ -42,3 +42,4 @@ def browse_images(filepaths, func):
         elif k == 27:
             cv2.destroyAllWindows()
             break
+
