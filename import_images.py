@@ -32,7 +32,7 @@ class App:
             button = Button(button_frame, text=shape, command=lambda shape=shape : self.copy_image(shape))
             button.pack(side=LEFT, padx=10)
             
-            shape_dir = join('training', shape)
+            shape_dir = join('processed', shape)
             if not exists(shape_dir):
                 makedirs(shape_dir)
 
@@ -50,7 +50,7 @@ class App:
         self.label.configure(image=self.image)
 
     def copy_image(self, shape):
-        new_path = join('training', shape, self.filenames[0])
+        new_path = join('processed', shape, self.filenames[0])
         shutil.copyfile(self.cur_path(), new_path)
 
         if len(self.filenames) > 1:
