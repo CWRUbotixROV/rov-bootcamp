@@ -8,12 +8,16 @@ def otsu(image):
     :return: image after otsu thresholding
     """
 
+    # Prepare image for otsu
     image = cv2.resize(image, (640, 480))
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     blur = cv2.GaussianBlur(gray, (5, 5), 0)
 
+    # Perform otsu thresholding on image
     ret, thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+
+    # Invert the colors
     thresh = cv2.bitwise_not(thresh)
 
     return gray, thresh

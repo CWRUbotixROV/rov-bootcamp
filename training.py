@@ -1,9 +1,10 @@
 import cv2
-import shape_classifier
-import utils
 from skimage.feature import hog
 from sklearn.svm import SVC
 import pickle
+
+import shape_classifier
+import utils
 
 def prepare_data():
     """
