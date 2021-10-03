@@ -1,4 +1,5 @@
 import cv2
+import training
 
 def live_video():
     video = cv2.VideoCapture(0)
@@ -15,4 +16,4 @@ def live_video():
 
     cv2.destroyAllWindows()
 
-
+training.prepared_images()

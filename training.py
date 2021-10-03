@@ -1,13 +1,14 @@
+import cv2
 import shape_classifier
 import utils
 from skimage.feature import hog
 from sklearn.svm import SVC
 import pickle
 
-def prepared_images():
+def prepare_data():
     """
-    Goes through all the photos to get the best contour for each one
-    :returns: list of cropped contours and a list of the corresponding shape labels
+    Goes through all the images to get the best contour for each one
+    :returns: list of cropped images and a list of the corresponding shape labels
     """
 
     all_images, all_labels = utils.get_all_training_data()
@@ -15,23 +16,27 @@ def prepared_images():
     selected_images = []
     selected_labels = []
 
-    for i in range(len(all_images)):
-        image = shape_classifier.convert_image(all_images[i])
+    print("Preparing images...")
 
-        if image is not None:
-            selected_images.append(image)
+    for i in range(len(all_images)):
+        image = cv2.imread(all_images[i])
+
+        cropped = shape_classifier.convert_image(image)
+
+        if cropped is not None:
+            selected_images.append(cropped)
             selected_labels.append(all_labels[i])
+
+    print("Finished preparing images")
 
     return selected_images, selected_labels
 
 def do_hog():
     """
 
-    :param images: cropped contours from convert_images
-    :param labels: corresponding shape labels for images
     """
 
-    images, labels = prepared_images()
+    images, labels = prepare_data()
 
     hogs = []
 

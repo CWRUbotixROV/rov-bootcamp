@@ -60,13 +60,17 @@ def get_contours(gray, thresh):
 
         diff = ((border_mean - inside_mean) / inside_std) + ((border_mean - inside_mean) / border_std)
 
-        # If ... set current contour to best_contour
+        # If diff is more than max_diff set current contour to best_contour
         if diff > max_diff:
             max_diff = diff
             best_contour = cnt
 
     # Cropped gray image from the bounding rectangle of the best contour and resize
     x, y, w, h = cv2.boundingRect(best_contour)
+
+    # Ignore contours with no width or height
+    if w == 0 or h == 0:
+        return None
 
     cropped = gray[y:y + h, x:x + w]
     cropped = cv2.resize(cropped, (100, 100))
