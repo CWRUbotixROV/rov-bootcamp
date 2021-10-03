@@ -1,14 +1,18 @@
 import cv2
-import shape_classifier
-import utils
 
-images, shape_label = utils.get_all_training_data()
+def live_video():
+    video = cv2.VideoCapture(0)
 
-image = cv2.imread(images[100])
+    while True:
+        ret, frame = video.read()
 
-otsu_image = shape_classifier.otsu(image)
-shape_classifier.get_contours(image, otsu_image)
+        # Space bar to quit video
+        key = cv2.waitKey(1)
+        if key == 32:
+            break
 
-cv2.imshow("image", image)
-cv2.waitKey(0)
+        cv2.imshow("Video", frame)
+
+    cv2.destroyAllWindows()
+
 
